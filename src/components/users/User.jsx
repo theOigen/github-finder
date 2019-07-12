@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect, useContext } from 'react';
 import Spinner from '../layout/Spinner';
+import NotFound from '../pages/NotFound';
 import Repos from '../repos/Repos';
 import { Link } from 'react-router-dom';
 import GithubContext from '../../context/github/githubContext';
@@ -13,6 +14,8 @@ const User = ({ match }) => {
     getUserRepos(match.params.login);
     // eslint-disable-next-line
   }, []);
+
+  if (!user || !repos) return <NotFound />;
 
   const {
     name,
